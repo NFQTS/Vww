@@ -1,562 +1,459 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Work Wife | AI Funnel Fixer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Virtual Work Wife</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <style>
-        :root {
-            --black: #000000;
-            --pink: #FF69B4;
-            --dark-pink: #C71585;
-            --white: #FFFFFF;
-            --light-gray: #F8F8F8;
-            --gray: #1a1a1a;
-        }
+  <style>
+    :root {
+      --black: #000000;
+      --pink: #FF69B4;
+      --dark-pink: #C71585;
+      --white: #FFFFFF;
+      --gray: #1a1a1a;
+      --light-gray: #f7f7f7;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--black);
-            color: var(--white);
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-        /* ================= HERO ================= */
+    /* ================= HERO ================= */
 
-        .hero {
-            min-height: 100vh;
-            padding: 6rem 5% 4rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background:
-                radial-gradient(circle at 20% 20%, rgba(255,105,180,0.25), transparent 60%),
-                radial-gradient(circle at 80% 80%, rgba(255,105,180,0.15), transparent 60%),
-                linear-gradient(135deg, #000000 0%, #140014 50%, #000000 100%);
-            overflow: hidden;
-        }
+    .hero {
+      min-height: 100vh;
+      padding: 6rem 5% 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,105,180,0.25), transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(255,105,180,0.15), transparent 60%),
+        linear-gradient(135deg, #000000 0%, #140014 50%, #000000 100%);
+      overflow: hidden;
+    }
 
-        .hero::before {
-            content: "";
-            position: absolute;
-            inset: -200px;
-            background: radial-gradient(circle, rgba(255,105,180,0.15) 0%, transparent 40%);
-            animation: pulseGlow 10s ease-in-out infinite alternate;
-            pointer-events: none;
-        }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -200px;
+      background: radial-gradient(circle, rgba(255,105,180,0.15) 0%, transparent 40%);
+      animation: pulseGlow 10s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
 
-        .hero-inner {
-            max-width: 1100px;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
+    .hero-content {
+      max-width: 900px;
+      position: relative;
+      z-index: 2;
+    }
 
-        .hero-text h1 {
-            font-size: clamp(3.5rem, 7vw, 7.5rem);
-            font-weight: 900;
-            line-height: 1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, var(--white), var(--pink), var(--white));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 40px rgba(255,105,180,0.4);
-        }
+    .hero h1 {
+      font-size: clamp(3.5rem, 8vw, 8rem);
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 1.2rem;
+      background: linear-gradient(90deg, var(--white), var(--pink), var(--white));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 40px rgba(255,105,180,0.4);
+    }
 
-        .hero-text p {
-            font-size: clamp(1.2rem, 2.5vw, 1.7rem);
-            opacity: 0.95;
-            margin-bottom: 2.5rem;
-            max-width: 540px;
-        }
+    .hero p {
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      opacity: 0.9;
+      margin-bottom: 2.5rem;
+    }
 
-        .hero-actions {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
+    .hero .cta {
+      display: inline-block;
+      background: var(--pink);
+      color: var(--black);
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 1.2rem 3.5rem;
+      border-radius: 999px;
+      box-shadow: 0 15px 40px rgba(255,105,180,0.55);
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
 
-        .primary-btn {
-            background: var(--pink);
-            color: var(--black);
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            padding: 1.2rem 3.5rem;
-            border-radius: 999px;
-            box-shadow: 0 15px 40px rgba(255,105,180,0.55);
-            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+    .hero .cta:hover {
+      transform: scale(1.12);
+      background: var(--white);
+      color: var(--pink);
+      box-shadow: 0 25px 60px rgba(255,105,180,0.8);
+    }
 
-        .primary-btn:hover {
-            transform: scale(1.12);
-            background: var(--white);
-            color: var(--pink);
-            box-shadow: 0 25px 60px rgba(255,105,180,0.8);
-        }
+    /* ================= MINI MIDDLE SECTION ================= */
 
-        .secondary-btn {
-            border: 2px solid var(--pink);
-            color: var(--pink);
-            padding: 1.1rem 3rem;
-            border-radius: 999px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
+    .mystery {
+      padding: 5rem 5% 4rem;
+      background: var(--black);
+      text-align: center;
+    }
 
-        .secondary-btn:hover {
-            background: var(--pink);
-            color: var(--black);
-        }
+    .mystery h2 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      margin-bottom: 1.2rem;
+      color: var(--pink);
+    }
 
-        .hero-card {
-            background: rgba(0,0,0,0.55);
-            border: 1px solid rgba(255,105,180,0.25);
-            border-radius: 32px;
-            padding: 3rem;
-            backdrop-filter: blur(16px);
-            box-shadow: 0 40px 120px rgba(255,105,180,0.35);
-            position: relative;
-            overflow: hidden;
-        }
+    .mystery p {
+      font-size: 1.4rem;
+      opacity: 0.85;
+    }
 
-        .hero-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 30% 20%, rgba(255,105,180,0.2), transparent 60%);
-            opacity: 0.7;
-            pointer-events: none;
-        }
+    .mystery span {
+      display: inline-block;
+      margin: 0 0.5rem;
+      opacity: 0.7;
+    }
 
-        .hero-card h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--pink);
-        }
+    /* ================= FUNNEL ANALYZER ================= */
 
-        .hero-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
+    .final-cta {
+      padding: 7rem 5%;
+      background: linear-gradient(to bottom, #000000, #120012);
+      text-align: center;
+    }
 
-        .hero-card li {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-            font-size: 1.05rem;
-            opacity: 0.95;
-        }
+    .final-cta h2 {
+      font-size: clamp(3rem, 7vw, 6rem);
+      margin-bottom: 1.5rem;
+    }
 
-        .hero-card li::before {
-            content: "✦";
-            color: var(--pink);
-            font-weight: bold;
-        }
+    .final-cta p {
+      font-size: 1.4rem;
+      max-width: 850px;
+      margin: 0 auto 3rem;
+      opacity: 0.9;
+    }
 
-        /* ================= BENEFITS ================= */
+    .funnel-form {
+      max-width: 650px;
+      margin: 0 auto;
+      text-align: left;
+      color: var(--white);
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,105,180,0.25);
+      border-radius: 28px;
+      padding: 3rem;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 40px 120px rgba(255,105,180,0.35);
+    }
 
-        .benefits {
-            padding: 8rem 5% 6rem;
-            background: var(--light-gray);
-            color: var(--black);
-            text-align: center;
-        }
+    .funnel-form label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
 
-        .benefits h2 {
-            font-size: clamp(2.8rem, 6vw, 5rem);
-            margin-bottom: 1rem;
-            color: var(--pink);
-        }
+    .funnel-form input {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255,105,180,0.5);
+      background: var(--gray);
+      color: var(--white);
+      font-size: 1rem;
+    }
 
-        .benefits p.sub {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 4rem;
-            color: #333;
-        }
+    .funnel-form input:focus {
+      outline: none;
+      border-color: var(--pink);
+      box-shadow: 0 0 0 2px rgba(255,105,180,0.2);
+    }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+    .funnel-form button {
+      background: var(--pink);
+      color: var(--black);
+      font-size: 1.4rem;
+      padding: 1.3rem 4rem;
+      border-radius: 999px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      box-shadow: 0 15px 40px rgba(255,105,180,0.5);
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
 
-        .card {
-            background: white;
-            padding: 3.2rem 2.5rem;
-            border-radius: 28px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-            transition: all 0.45s ease;
-            position: relative;
-            overflow: hidden;
-        }
+    .funnel-form button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 25px 60px rgba(255,105,180,0.8);
+      background: var(--white);
+      color: var(--pink);
+    }
 
-        .card::before {
-            content: "";
-            position: absolute;
-            inset: -60%;
-            background: radial-gradient(circle, rgba(255,105,180,0.15) 10%, transparent 40%);
-            opacity: 0;
-            transition: all 0.6s ease;
-        }
+    #analysis-result {
+      margin-top: 3rem;
+      background: rgba(0,0,0,0.6);
+      padding: 2.5rem;
+      border-radius: 24px;
+      border: 1px solid rgba(255,105,180,0.25);
+      display: none;
+      box-shadow: 0 30px 80px rgba(255,105,180,0.35);
+    }
 
-        .card:hover::before {
-            opacity: 1;
-            transform: scale(1.3);
-        }
+    #analysis-result h3 {
+      color: var(--pink);
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
 
-        .card:hover {
-            transform: translateY(-18px) scale(1.02);
-            box-shadow: 0 35px 80px rgba(255,105,180,0.35);
-        }
+    #analysis-result p {
+      margin-bottom: 1.2rem;
+      line-height: 1.6;
+    }
 
-        .card h3 {
-            font-size: 2.1rem;
-            margin-bottom: 1.2rem;
-            color: var(--pink);
-        }
+    #analysis-result ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+    }
 
-        .card p {
-            font-size: 1.15rem;
-            color: #444;
-        }
+    #analysis-result li {
+      margin-bottom: 0.7rem;
+    }
 
-        /* ================= FINAL CTA ================= */
+    .chart-wrapper {
+      margin-top: 3rem;
+      background: rgba(0,0,0,0.5);
+      border-radius: 24px;
+      padding: 2rem;
+      border: 1px solid rgba(255,105,180,0.25);
+      box-shadow: 0 30px 80px rgba(255,105,180,0.35);
+    }
 
-        .final-cta {
-            padding: 8rem 5%;
-            background: linear-gradient(to bottom, #000000, #120012);
-            text-align: center;
-        }
+    /* ================= FOOTER ================= */
 
-        .final-cta h2 {
-            font-size: clamp(3rem, 7vw, 6rem);
-            margin-bottom: 1.5rem;
-        }
+    footer {
+      padding: 3rem 5%;
+      text-align: center;
+      background: var(--black);
+      border-top: 1px solid #222;
+      font-size: 0.95rem;
+      color: #aaa;
+    }
 
-        .final-cta p {
-            font-size: 1.5rem;
-            max-width: 850px;
-            margin: 0 auto 3.5rem;
-            opacity: 0.9;
-        }
+    /* ================= ANIMATIONS ================= */
 
-        .funnel-form {
-            max-width: 650px;
-            margin: 0 auto;
-            text-align: left;
-            color: var(--white);
-            background: rgba(0,0,0,0.55);
-            border: 1px solid rgba(255,105,180,0.25);
-            border-radius: 28px;
-            padding: 3rem;
-            backdrop-filter: blur(16px);
-            box-shadow: 0 40px 120px rgba(255,105,180,0.35);
-        }
+    @keyframes pulseGlow {
+      0% { opacity: 0.35; transform: scale(1); }
+      100% { opacity: 0.75; transform: scale(1.15); }
+    }
 
-        .funnel-form label {
-            display: block;
-            margin-bottom: 0.4rem;
-            font-weight: 500;
-            font-size: 0.95rem;
-            opacity: 0.9;
-        }
+    /* ================= RESPONSIVE ================= */
 
-        .funnel-form input {
-            width: 100%;
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            border-radius: 10px;
-            border: 1px solid rgba(255,105,180,0.5);
-            background: var(--gray);
-            color: var(--white);
-            font-size: 1rem;
-        }
-
-        .funnel-form input:focus {
-            outline: none;
-            border-color: var(--pink);
-            box-shadow: 0 0 0 2px rgba(255,105,180,0.2);
-        }
-
-        .funnel-form button {
-            background: var(--pink);
-            color: var(--black);
-            font-size: 1.4rem;
-            padding: 1.3rem 4rem;
-            border-radius: 999px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            box-shadow: 0 15px 40px rgba(255,105,180,0.5);
-            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .funnel-form button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 25px 60px rgba(255,105,180,0.8);
-            background: var(--white);
-            color: var(--pink);
-        }
-
-        #analysis-result {
-            margin-top: 3rem;
-            background: rgba(0,0,0,0.6);
-            padding: 2.5rem;
-            border-radius: 24px;
-            border: 1px solid rgba(255,105,180,0.25);
-            display: none;
-            box-shadow: 0 30px 80px rgba(255,105,180,0.35);
-        }
-
-        #analysis-result h3 {
-            color: var(--pink);
-            margin-bottom: 1rem;
-            font-size: 2rem;
-        }
-
-        #analysis-result p {
-            margin-bottom: 1.2rem;
-            line-height: 1.6;
-        }
-
-        #analysis-result ul {
-            list-style-type: disc;
-            padding-left: 1.5rem;
-        }
-
-        #analysis-result li {
-            margin-bottom: 0.7rem;
-        }
-
-        /* ================= FOOTER ================= */
-
-        footer {
-            padding: 3rem 5%;
-            text-align: center;
-            background: var(--black);
-            border-top: 1px solid #222;
-            font-size: 0.95rem;
-            color: #aaa;
-        }
-
-        /* ================= ANIMATIONS ================= */
-
-        @keyframes pulseGlow {
-            0% { opacity: 0.35; transform: scale(1); }
-            100% { opacity: 0.75; transform: scale(1.15); }
-        }
-
-        /* ================= RESPONSIVE ================= */
-
-        @media (max-width: 900px) {
-            .hero-inner {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-text p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .hero-actions {
-                justify-content: center;
-            }
-
-            .hero-card {
-                margin-top: 2rem;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .hero {
-                padding-top: 5rem;
-            }
-
-            .funnel-form {
-                padding: 2.2rem;
-            }
-        }
-    </style>
+    @media (max-width: 600px) {
+      .funnel-form {
+        padding: 2.2rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- ================= HERO ================= -->
-    <section class="hero">
-        <div class="hero-inner">
-            <div class="hero-text">
-                <h1>Virtual Work Wife</h1>
-                <p>
-                    Your AI funnel partner that scans your entire system in seconds,
-                    finds every leak, and hands you the exact fixes to grow revenue —
-                    no guesswork, no fluff.
-                </p>
-                <div class="hero-actions">
-                    <a href="#cta" class="primary-btn">Analyze My Funnel</a>
-                    <a href="#cta" class="secondary-btn">See How It Works</a>
-                </div>
-            </div>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Virtual Work Wife</h1>
+      <p>
+        She sees what you don’t.  
+        Fixes what’s broken.  
+        Makes your funnel print money.
+      </p>
+      <a href="#cta" class="cta">Analyze My Funnel</a>
+    </div>
+  </section>
 
-            <div class="hero-card">
-                <h3>What She Does For You</h3>
-                <ul>
-                    <li>Audits ads, landing pages, checkout, emails, and follow-ups.</li>
-                    <li>Calculates real conversion leaks in seconds.</li>
-                    <li>Delivers prioritized fixes you can implement immediately.</li>
-                    <li>Optimizes your funnel like a top-tier growth strategist.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+  <!-- ================= MINI MIDDLE ================= -->
+  <section class="mystery">
+    <h2>Quietly Powerful.</h2>
+    <p>
+      <span>Smart.</span>
+      <span>Fast.</span>
+      <span>Relentless.</span>
+    </p>
+  </section>
 
-    <!-- ================= BENEFITS ================= -->
-    <section class="benefits">
-        <h2>Why Businesses Are Obsessed</h2>
-        <p class="sub">This isn’t another dashboard. It’s a revenue unlock machine.</p>
-        <div class="grid">
-            <div class="card">
-                <h3>Deep AI Audit</h3>
-                <p>Scans every stage — ads, landing pages, checkout, emails — nothing hides.</p>
-            </div>
-            <div class="card">
-                <h3>Dead-Simple Fixes</h3>
-                <p>Clear, prioritized steps. Copy-paste copy, layout tweaks, automation ideas — done fast.</p>
-            </div>
-            <div class="card">
-                <h3>Revenue Unlocked</h3>
-                <p>Clients see 2x–5x conversions in weeks. Your funnel finally works as hard as you do.</p>
-            </div>
-        </div>
-    </section>
+  <!-- ================= FUNNEL ANALYZER ================= -->
+  <section class="final-cta" id="cta">
+    <h2>Instant Funnel Analysis</h2>
+    <p>Drop your numbers. Get clarity. No email. No fluff.</p>
 
-    <!-- ================= FINAL CTA ================= -->
-    <section class="final-cta" id="cta">
-        <h2>Start Analyzing Your Funnel Today</h2>
-        <p>Enter your key funnel metrics below for an instant AI-powered analysis. We’ll identify bottlenecks and suggest fixes.</p>
+    <form class="funnel-form" id="funnel-form">
+      <label for="visitors">Visitors / Impressions</label>
+      <input type="number" id="visitors" placeholder="e.g., 10000" required min="0">
 
-        <form class="funnel-form" id="funnel-form">
-            <label for="visitors">Awareness Stage: Total Visitors / Impressions</label>
-            <input type="number" id="visitors" placeholder="e.g., 10000" required min="0">
+      <label for="leads">Leads</label>
+      <input type="number" id="leads" placeholder="e.g., 500" required min="0">
 
-            <label for="leads">Interest Stage: Leads Generated</label>
-            <input type="number" id="leads" placeholder="e.g., 500" required min="0">
+      <label for="opportunities">Opportunities</label>
+      <input type="number" id="opportunities" placeholder="e.g., 100" required min="0">
 
-            <label for="opportunities">Decision Stage: Qualified Opportunities</label>
-            <input type="number" id="opportunities" placeholder="e.g., 100" required min="0">
+      <label for="sales">Sales</label>
+      <input type="number" id="sales" placeholder="e.g., 20" required min="0">
 
-            <label for="sales">Action Stage: Closed Sales</label>
-            <input type="number" id="sales" placeholder="e.g., 20" required min="0">
+      <label for="acq-cost">Total Ad Spend</label>
+      <input type="number" id="acq-cost" placeholder="e.g., 2000" required min="0">
 
-            <label for="acq-cost">Acquisition Cost (total spend on leads)</label>
-            <input type="number" id="acq-cost" placeholder="e.g., 2000" required min="0">
+      <label for="cycle-length">Sales Cycle (days)</label>
+      <input type="number" id="cycle-length" placeholder="e.g., 30" required min="0">
 
-            <label for="cycle-length">Average Sales Cycle Length (days)</label>
-            <input type="number" id="cycle-length" placeholder="e.g., 30" required min="0">
+      <button type="submit">Run Analysis</button>
+    </form>
 
-            <button type="submit">Analyze Now</button>
-        </form>
+    <div id="analysis-result">
+      <h3>Your Funnel Snapshot</h3>
+      <p id="metrics-summary"></p>
+      <h4>What’s Holding You Back:</h4>
+      <ul id="suggestions"></ul>
 
-        <div id="analysis-result">
-            <h3>Your Funnel Analysis</h3>
-            <p id="metrics-summary"></p>
-            <h4>Identified Issues & Fixes:</h4>
-            <ul id="suggestions"></ul>
-        </div>
-    </section>
+      <div class="chart-wrapper">
+        <canvas id="funnelChart"></canvas>
+      </div>
+    </div>
+  </section>
 
-    <!-- ================= FOOTER ================= -->
-    <footer>
-        <p>&copy; 2026 Virtual Work Wife. Built to make your business unstoppable.</p>
-    </footer>
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <p>&copy; 2026 Virtual Work Wife. Built to make your business unstoppable.</p>
+  </footer>
 
-    <!-- ================= SCRIPT ================= -->
-    <script>
-        const form = document.getElementById('funnel-form');
-        const result = document.getElementById('analysis-result');
-        const summary = document.getElementById('metrics-summary');
-        const suggestions = document.getElementById('suggestions');
+  <!-- ================= SCRIPT ================= -->
+  <script>
+    const form = document.getElementById('funnel-form');
+    const result = document.getElementById('analysis-result');
+    const summary = document.getElementById('metrics-summary');
+    const suggestions = document.getElementById('suggestions');
+    const chartCanvas = document.getElementById('funnelChart');
+    let funnelChart;
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
 
-            const visitors = parseInt(document.getElementById('visitors').value) || 0;
-            const leads = parseInt(document.getElementById('leads').value) || 0;
-            const opportunities = parseInt(document.getElementById('opportunities').value) || 0;
-            const sales = parseInt(document.getElementById('sales').value) || 0;
-            const acqCost = parseFloat(document.getElementById('acq-cost').value) || 0;
-            const cycleLength = parseInt(document.getElementById('cycle-length').value) || 0;
+      const visitors = parseInt(document.getElementById('visitors').value) || 0;
+      const leads = parseInt(document.getElementById('leads').value) || 0;
+      const opportunities = parseInt(document.getElementById('opportunities').value) || 0;
+      const sales = parseInt(document.getElementById('sales').value) || 0;
+      const acqCost = parseFloat(document.getElementById('acq-cost').value) || 0;
+      const cycleLength = parseInt(document.getElementById('cycle-length').value) || 0;
 
-            const convToLeads = visitors > 0 ? (leads / visitors * 100).toFixed(2) : 0;
-            const convToOpps = leads > 0 ? (opportunities / leads * 100).toFixed(2) : 0;
-            const convToSales = opportunities > 0 ? (sales / opportunities * 100).toFixed(2) : 0;
-            const overallConv = visitors > 0 ? (sales / visitors * 100).toFixed(2) : 0;
-            const cac = sales > 0 ? (acqCost / sales).toFixed(2) : 'N/A';
-            const dropOffLeads = 100 - convToLeads;
-            const dropOffOpps = 100 - convToOpps;
-            const dropOffSales = 100 - convToSales;
+      const convToLeads = visitors > 0 ? (leads / visitors * 100).toFixed(2) : 0;
+      const convToOpps = leads > 0 ? (opportunities / leads * 100).toFixed(2) : 0;
+      const convToSales = opportunities > 0 ? (sales / opportunities * 100).toFixed(2) : 0;
+      const overallConv = visitors > 0 ? (sales / visitors * 100).toFixed(2) : 0;
+      const cac = sales > 0 ? (acqCost / sales).toFixed(2) : 'N/A';
+      const dropOffLeads = 100 - convToLeads;
+      const dropOffOpps = 100 - convToOpps;
+      const dropOffSales = 100 - convToSales;
 
-            summary.innerHTML = `
-                Overall Conversion Rate: ${overallConv}% <br>
-                Visitor to Lead: ${convToLeads}% (Drop-off: ${dropOffLeads}%) <br>
-                Lead to Opportunity: ${convToOpps}% (Drop-off: ${dropOffOpps}%) <br>
-                Opportunity to Sale: ${convToSales}% (Drop-off: ${dropOffSales}%) <br>
-                Customer Acquisition Cost: $${cac} <br>
-                Sales Cycle: ${cycleLength} days
-            `;
+      summary.innerHTML = `
+        Overall Conversion: ${overallConv}% <br>
+        Visitor → Lead: ${convToLeads}% <br>
+        Lead → Opportunity: ${convToOpps}% <br>
+        Opportunity → Sale: ${convToSales}% <br>
+        Cost Per Customer: $${cac} <br>
+        Sales Cycle: ${cycleLength} days
+      `;
 
-            suggestions.innerHTML = '';
+      suggestions.innerHTML = '';
 
-            if (dropOffLeads > 50) {
-                suggestions.innerHTML += '<li>High drop-off at awareness: Improve ad targeting or landing page engagement. Consider A/B testing headlines and visuals.</li>';
+      if (dropOffLeads > 50) {
+        suggestions.innerHTML += '<li>Your top-of-funnel is leaking. Your offer or landing page isn’t gripping attention.</li>';
+      }
+      if (dropOffOpps > 60) {
+        suggestions.innerHTML += '<li>Your leads aren’t warming up properly. You need stronger nurturing.</li>';
+      }
+      if (dropOffSales > 70) {
+        suggestions.innerHTML += '<li>Deals are stalling. Your close process needs tightening.</li>';
+      }
+      if (cac !== 'N/A' && cac > 500) {
+        suggestions.innerHTML += '<li>You’re paying too much for customers. Efficiency is your biggest opportunity.</li>';
+      }
+      if (cycleLength > 60) {
+        suggestions.innerHTML += '<li>Your sales cycle is slow. Speed = money left on the table.</li>';
+      }
+      if (suggestions.innerHTML === '') {
+        suggestions.innerHTML += '<li>Your funnel is healthy. The next move is scale.</li>';
+      }
+
+      result.style.display = 'block';
+      result.scrollIntoView({ behavior: 'smooth' });
+
+      // Render or update chart
+      const data = [visitors, leads, opportunities, sales];
+
+      if (funnelChart) {
+        funnelChart.destroy();
+      }
+
+      funnelChart = new Chart(chartCanvas, {
+        type: 'bar',
+        data: {
+          labels: ['Visitors', 'Leads', 'Opportunities', 'Sales'],
+          datasets: [{
+            data: data,
+            backgroundColor: [
+              'rgba(255,105,180,0.6)',
+              'rgba(255,105,180,0.55)',
+              'rgba(255,105,180,0.5)',
+              'rgba(255,105,180,0.45)'
+            ],
+            borderColor: 'rgba(255,105,180,1)',
+            borderWidth: 2,
+            borderRadius: 12
+          }]
+        },
+        options: {
+          responsive: true,
+          animation: {
+            duration: 1200,
+            easing: 'easeOutQuart'
+          },
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            x: {
+              ticks: { color: '#fff' },
+              grid: { display: false }
+            },
+            y: {
+              ticks: { color: '#fff' },
+              grid: { color: 'rgba(255,255,255,0.1)' }
             }
-            if (dropOffOpps > 60) {
-                suggestions.innerHTML += '<li>Poor lead qualification: Add lead scoring or nurture campaigns with personalized emails.</li>';
-            }
-            if (dropOffSales > 70) {
-                suggestions.innerHTML += '<li>Issues closing deals: Address objections with better demos or incentives. Shorten cycle by automating follow-ups.</li>';
-            }
-            if (cac !== 'N/A' && cac > 500) {
-                suggestions.innerHTML += '<li>High CAC: Optimize ad spend or focus on organic channels like SEO/content marketing.</li>';
-            }
-            if (cycleLength > 60) {
-                suggestions.innerHTML += '<li>Lengthy sales cycle: Use chatbots for instant responses or AI tools for predictive lead scoring.</li>';
-            }
-            if (suggestions.innerHTML === '') {
-                suggestions.innerHTML += '<li>Your funnel looks healthy! Focus on scaling traffic while maintaining these rates.</li>';
-            }
-
-            result.style.display = 'block';
-            result.scrollIntoView({ behavior: 'smooth' });
-        });
-    </script>
+          }
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
