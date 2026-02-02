@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Virtual Work Life | Opportunity Cost Engine</title>
+  <title>Virtual Work Wife | Opportunity Cost Engine</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -104,17 +104,74 @@
       max-width: 950px;
     }
 
-    .hero h1 {
+    /* ================= LOGO ANIMATION ================= */
+
+    .logo {
       font-size: clamp(3.8rem, 8vw, 8.8rem);
       font-weight: 900;
       line-height: 1;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.4rem;
+      display: inline-flex;
+      gap: 0.2rem;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .logo span {
       background: linear-gradient(90deg, var(--white), var(--pink), var(--neon-pink), var(--white));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow:
         0 0 20px rgba(255,79,216,0.6),
         0 0 40px rgba(255,140,255,0.4);
+      display: inline-block;
+      transition: all 0.8s ease;
+    }
+
+    .logo .life {
+      position: relative;
+    }
+
+    .logo .life .l-letter {
+      display: inline-block;
+      position: relative;
+      animation: lFadeOut 1s ease forwards;
+      animation-delay: 1.8s;
+    }
+
+    .logo .life .w-letter {
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      opacity: 0;
+      transform: scale(0.2) rotate(-30deg);
+      animation: wReveal 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      animation-delay: 1.8s;
+    }
+
+    @keyframes lFadeOut {
+      to {
+        opacity: 0;
+        transform: scale(0.2) rotate(30deg);
+      }
+    }
+
+    @keyframes wReveal {
+      to {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+    }
+
+    .logo .rest {
+      display: inline-block;
+      animation: subtleGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes subtleGlow {
+      from { filter: drop-shadow(0 0 0 rgba(255,79,216,0)); }
+      to { filter: drop-shadow(0 0 12px rgba(255,79,216,0.6)); }
     }
 
     .hero p {
@@ -377,7 +434,14 @@
     </div>
 
     <div class="hero-content">
-      <h1>Virtual Work Life</h1>
+      <div class="logo">
+        <span class="rest">Virtual&nbsp;Work&nbsp;</span>
+        <span class="life">
+          <span class="l-letter">L</span>
+          <span class="w-letter">W</span>
+          <span class="rest">ife</span>
+        </span>
+      </div>
       <p>
         Your always-on AI partner for building, scaling, and optimizing digital income — without the burnout.
       </p>
@@ -386,7 +450,7 @@
 
   <!-- ================= BENEFITS ================= -->
   <section class="benefits">
-    <h2>Why People Love Virtual Work Life</h2>
+    <h2>Why People Love Virtual Work Wife</h2>
     <div class="grid">
       <div class="card">
         <h3>Always On</h3>
@@ -469,7 +533,7 @@
 
   <!-- ================= FOOTER ================= -->
   <footer>
-    <p>&copy; 2026 Virtual Work Life. Built to make your business unstoppable.</p>
+    <p>&copy; 2026 Virtual Work Wife. Built to make your business unstoppable.</p>
   </footer>
 
   <!-- ================= SCRIPT ================= -->
@@ -538,7 +602,6 @@
       valuePerViewerEl.textContent = `$${valuePerViewer.toFixed(4)}`;
       missedRevenueEl.textContent = `$${missedRevenue > 0 ? missedRevenue.toFixed(2) : '0.00'}`;
 
-      // Platform hint
       const nicheNameMap = {
         coaching: "coaching",
         ecommerce: "e-commerce",
@@ -552,7 +615,6 @@
 
       platformHintEl.textContent = `For ${nicheNameMap[niche]} audiences, these platforms typically generate the highest return per viewer.`;
 
-      // Chart data
       const benchmark = nicheBenchmarks[niche];
 
       if (platformChart) {
