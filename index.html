@@ -3,252 +3,406 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Work Wife - Revolutionize Your Funnel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Virtual Work Wife | AI Funnel Fixer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
     <style>
-        /* Global Styles */
-        body {
+        :root {
+            --black: #000000;
+            --pink: #FF69B4;     /* Hot pink - vibrant and brand-aligned */
+            --dark-pink: #C71585; /* Deeper pink for accents/hover */
+            --white: #FFFFFF;
+            --light-gray: #F8F8F8;
+            --gray: #222222;
+        }
+
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             font-family: 'Poppins', sans-serif;
-            background-color: #000000;
-            color: #FFFFFF;
-            line-height: 1.6;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.5;
             overflow-x: hidden;
         }
 
-        a {
-            color: #FF69B4;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* Hero Section */
+        /* Hero */
         .hero {
-            background: linear-gradient(135deg, #000000 0%, #FF69B4 50%, #000000 100%);
             height: 100vh;
+            min-height: 700px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 20px;
+            background: linear-gradient(135deg, var(--black) 0%, var(--pink) 50%, var(--black) 100%);
             position: relative;
-            overflow: hidden;
+            padding: 0 5%;
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255,105,180,0.2) 0%, rgba(0,0,0,0) 70%);
-            animation: pulse 5s infinite;
+            inset: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(255,105,180,0.15) 0%, transparent 60%);
+            pointer-events: none;
+            animation: glow 8s ease-in-out infinite alternate;
         }
 
         .hero h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            animation: fadeInDown 1s ease-out;
+            font-size: clamp(3.5rem, 8vw, 9rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--white), var(--pink), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(255,105,180,0.4);
+            animation: float 6s ease-in-out infinite;
         }
 
-        .hero p {
-            font-size: 1.8rem;
-            max-width: 700px;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease-out 0.5s;
-            animation-fill-mode: backwards;
+        .hero .tagline {
+            font-size: clamp(1.4rem, 4vw, 2.2rem);
+            max-width: 900px;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            font-weight: 300;
         }
 
         .hero .cta {
-            background-color: #FF69B4;
-            color: #000000;
-            padding: 1.2rem 3rem;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: fadeIn 1s ease-out 1s;
-            animation-fill-mode: backwards;
-            box-shadow: 0 4px 8px rgba(255,105,180,0.4);
+            display: inline-block;
+            background: var(--pink);
+            color: var(--black);
+            font-size: 1.4rem;
+            font-weight: 700;
+            padding: 1.2rem 3.5rem;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(255,105,180,0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: appear 1s forwards 1s;
         }
 
         .hero .cta:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 12px rgba(255,105,180,0.6);
+            transform: scale(1.12) translateY(0);
+            box-shadow: 0 20px 50px rgba(255,105,180,0.7);
+            background: var(--white);
+            color: var(--pink);
         }
 
-        /* Benefits Section */
+        /* Benefits */
         .benefits {
-            padding: 4rem 20px;
-            background-color: #FFFFFF;
-            color: #000000;
+            padding: 8rem 5% 6rem;
+            background: var(--light-gray);
+            color: var(--black);
             text-align: center;
         }
 
         .benefits h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #FF69B4;
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            margin-bottom: 4rem;
+            color: var(--pink);
         }
 
-        .benefit-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
-        .benefit {
-            background-color: #f8f8f8;
-            padding: 2rem;
-            border-radius: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        .card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 24px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .benefit:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(255,105,180,0.2);
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,105,180,0.08) 10%, transparent 40%);
+            transition: all 0.7s;
+            opacity: 0;
         }
 
-        .benefit h3 {
-            font-size: 1.6rem;
-            margin-bottom: 0.5rem;
-            color: #FF69B4;
+        .card:hover::before {
+            opacity: 1;
+            transform: scale(1.2);
         }
 
-        .benefit p {
-            font-size: 1rem;
-            color: #333;
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 70px rgba(255,105,180,0.25);
         }
 
-        /* Call to Action Section */
+        .card h3 {
+            font-size: 2rem;
+            margin-bottom: 1.2rem;
+            color: var(--pink);
+        }
+
+        .card p {
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        /* Final CTA with Form */
         .final-cta {
-            background: linear-gradient(135deg, #FF69B4 0%, #000000 100%);
-            padding: 4rem 20px;
+            padding: 8rem 5%;
+            background: linear-gradient(to bottom, var(--black), #1a001a);
             text-align: center;
         }
 
         .final-cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: clamp(3rem, 7vw, 6rem);
+            margin-bottom: 1.5rem;
         }
 
         .final-cta p {
+            font-size: 1.6rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            opacity: 0.9;
+        }
+
+        .funnel-form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+            color: var(--white);
+        }
+
+        .funnel-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .funnel-form input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--pink);
+            background: var(--gray);
+            color: var(--white);
+            font-size: 1rem;
+        }
+
+        .funnel-form button {
+            background: var(--pink);
+            color: var(--black);
             font-size: 1.5rem;
-            margin-bottom: 2rem;
+            padding: 1.4rem 4rem;
+            border-radius: 100px;
+            font-weight: 700;
+            box-shadow: 0 15px 40px rgba(255,105,180,0.5);
+            transition: all 0.4s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
         }
 
-        .final-cta .cta {
-            background-color: #FFFFFF;
-            color: #FF69B4;
-            padding: 1.2rem 3rem;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-        }
-
-        .final-cta .cta:hover {
+        .funnel-form button:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.6);
+            box-shadow: 0 25px 60px rgba(255,105,180,0.7);
+        }
+
+        #analysis-result {
+            margin-top: 3rem;
+            background: var(--gray);
+            padding: 2rem;
+            border-radius: 16px;
+            display: none;
+        }
+
+        #analysis-result h3 {
+            color: var(--pink);
+            margin-bottom: 1rem;
+        }
+
+        #analysis-result ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
         }
 
         /* Footer */
         footer {
-            background-color: #000000;
-            color: #FFFFFF;
+            padding: 3rem 5%;
             text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
+            background: var(--black);
+            border-top: 1px solid #222;
+            font-size: 0.95rem;
+            color: #aaa;
         }
 
         /* Animations */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes glow {
+            0% { opacity: 0.4; }
+            100% { opacity: 0.8; }
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        @keyframes appear {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
-        @keyframes pulse {
-            0% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.1); }
-            100% { opacity: 0.5; transform: scale(1); }
-        }
-
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .hero p {
-                font-size: 1.4rem;
-            }
-
-            .benefits h2, .final-cta h2 {
-                font-size: 2rem;
-            }
-
-            .final-cta p {
-                font-size: 1.2rem;
-            }
+            .hero h1 { font-size: clamp(3rem, 12vw, 6rem); }
+            .hero .tagline { font-size: 1.4rem; }
+            .benefits { padding: 6rem 5% 4rem; }
+            .final-cta { padding: 6rem 5%; }
         }
     </style>
 </head>
 <body>
+
     <section class="hero">
-        <h1>Unlock Your Business Potential</h1>
-        <p>AI scans your funnel, spots leaks, and fixes them instantly. Transform your sales today.</p>
-        <a href="#cta" class="cta">Start Fixing Now</a>
+        <h1>Virtual Work Wife</h1>
+        <p class="tagline">AI scans your entire funnel in seconds.<br>Finds every leak. Gives instant fixes.<br>Your revenue jumps — no guesswork.</p>
+        <a href="#cta" class="cta">Analyze My Funnel Now</a>
     </section>
 
-    <section id="benefits" class="benefits">
-        <h2>Instant Impact</h2>
-        <div class="benefit-grid">
-            <div class="benefit">
-                <h3>Deep AI Scan</h3>
-                <p>Analyzes every funnel stage for hidden issues.</p>
+    <section class="benefits">
+        <h2>Why Businesses Are Obsessed</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Deep AI Audit</h3>
+                <p>Scans every stage — ads, landing pages, checkout, emails — nothing hides.</p>
             </div>
-            <div class="benefit">
-                <h3>Smart Fixes</h3>
-                <p>Guided solutions to boost conversions effortlessly.</p>
+            <div class="card">
+                <h3>Dead-Simple Fixes</h3>
+                <p>Clear, prioritized steps. Copy-paste copy, layout tweaks, automation ideas — done fast.</p>
             </div>
-            <div class="benefit">
-                <h3>Proven Results</h3>
-                <p>Watch your business soar with optimized funnels.</p>
+            <div class="card">
+                <h3>Revenue Unlocked</h3>
+                <p>Clients see 2x–5x conversions in weeks. Your funnel finally works as hard as you do.</p>
             </div>
         </div>
     </section>
 
-    <section id="cta" class="final-cta">
-        <h2>Ready to Revolutionize?</h2>
-        <p>Your business deserves the best. Click below and see the difference.</p>
-        <a href="#" class="cta">Get Virtual Work Wife</a>
+    <section class="final-cta" id="cta">
+        <h2>Start Analyzing Your Funnel Today</h2>
+        <p>Enter your key funnel metrics below for an instant AI-powered analysis. We'll identify bottlenecks and suggest fixes.</p>
+        <form class="funnel-form" id="funnel-form">
+            <label for="visitors">Awareness Stage: Total Visitors/Impressions</label>
+            <input type="number" id="visitors" placeholder="e.g., 10000" required min="0">
+
+            <label for="leads">Interest Stage: Leads Generated</label>
+            <input type="number" id="leads" placeholder="e.g., 500" required min="0">
+
+            <label for="opportunities">Decision Stage: Qualified Opportunities</label>
+            <input type="number" id="opportunities" placeholder="e.g., 100" required min="0">
+
+            <label for="sales">Action Stage: Closed Sales</label>
+            <input type="number" id="sales" placeholder="e.g., 20" required min="0">
+
+            <label for="acq-cost">Acquisition Cost (total spend on leads)</label>
+            <input type="number" id="acq-cost" placeholder="e.g., 2000" required min="0">
+
+            <label for="cycle-length">Average Sales Cycle Length (days)</label>
+            <input type="number" id="cycle-length" placeholder="e.g., 30" required min="0">
+
+            <button type="submit">Analyze Now</button>
+        </form>
+
+        <div id="analysis-result">
+            <h3>Your Funnel Analysis</h3>
+            <p id="metrics-summary"></p>
+            <h4>Identified Issues & Fixes:</h4>
+            <ul id="suggestions"></ul>
+        </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Virtual Work Wife. All rights reserved.</p>
+        <p>&copy; 2026 Virtual Work Wife. Built to make your business unstoppable.</p>
     </footer>
+
+    <script>
+        const form = document.getElementById('funnel-form');
+        const result = document.getElementById('analysis-result');
+        const summary = document.getElementById('metrics-summary');
+        const suggestions = document.getElementById('suggestions');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const visitors = parseInt(document.getElementById('visitors').value) || 0;
+            const leads = parseInt(document.getElementById('leads').value) || 0;
+            const opportunities = parseInt(document.getElementById('opportunities').value) || 0;
+            const sales = parseInt(document.getElementById('sales').value) || 0;
+            const acqCost = parseFloat(document.getElementById('acq-cost').value) || 0;
+            const cycleLength = parseInt(document.getElementById('cycle-length').value) || 0;
+
+            // Calculate key metrics
+            const convToLeads = visitors > 0 ? (leads / visitors * 100).toFixed(2) : 0;
+            const convToOpps = leads > 0 ? (opportunities / leads * 100).toFixed(2) : 0;
+            const convToSales = opportunities > 0 ? (sales / opportunities * 100).toFixed(2) : 0;
+            const overallConv = visitors > 0 ? (sales / visitors * 100).toFixed(2) : 0;
+            const cac = sales > 0 ? (acqCost / sales).toFixed(2) : 'N/A';
+            const dropOffLeads = 100 - convToLeads;
+            const dropOffOpps = 100 - convToOpps;
+            const dropOffSales = 100 - convToSales;
+
+            // Display summary
+            summary.innerHTML = `
+                Overall Conversion Rate: ${overallConv}% <br>
+                Visitor to Lead: ${convToLeads}% (Drop-off: ${dropOffLeads}%) <br>
+                Lead to Opportunity: ${convToOpps}% (Drop-off: ${dropOffOpps}%) <br>
+                Opportunity to Sale: ${convToSales}% (Drop-off: ${dropOffSales}%) <br>
+                Customer Acquisition Cost: $${cac} <br>
+                Sales Cycle: ${cycleLength} days
+            `;
+
+            // Generate suggestions based on common problems
+            suggestions.innerHTML = '';
+            if (dropOffLeads > 50) {
+                suggestions.innerHTML += '<li>High drop-off at awareness: Improve ad targeting or landing page engagement. Consider A/B testing headlines and visuals.</li>';
+            }
+            if (dropOffOpps > 60) {
+                suggestions.innerHTML += '<li>Poor lead qualification: Add lead scoring or nurture campaigns with personalized emails.</li>';
+            }
+            if (dropOffSales > 70) {
+                suggestions.innerHTML += '<li>Issues closing deals: Address objections with better demos or incentives. Shorten cycle by automating follow-ups.</li>';
+            }
+            if (cac > 500) { // Arbitrary threshold
+                suggestions.innerHTML += '<li>High CAC: Optimize ad spend or focus on organic channels like SEO/content marketing.</li>';
+            }
+            if (cycleLength > 60) {
+                suggestions.innerHTML += '<li>Lengthy sales cycle: Use chatbots for instant responses or AI tools for predictive lead scoring.</li>';
+            }
+            if (suggestions.innerHTML === '') {
+                suggestions.innerHTML += '<li>Your funnel looks healthy! Focus on scaling traffic while maintaining these rates.</li>';
+            }
+
+            result.style.display = 'block';
+            result.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
 ```​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
