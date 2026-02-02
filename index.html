@@ -10,11 +10,10 @@
   <style>
     :root {
       --black: #000000;
-      --pink: #FF69B4;
-      --dark-pink: #C71585;
-      --white: #FFFFFF;
+      --pink: #ff4fd8;
+      --neon-pink: #ff8cff;
+      --white: #ffffff;
       --gray: #1a1a1a;
-      --light-gray: #f7f7f7;
     }
 
     * {
@@ -46,87 +45,117 @@
       justify-content: center;
       text-align: center;
       position: relative;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255,105,180,0.25), transparent 60%),
-        radial-gradient(circle at 80% 80%, rgba(255,105,180,0.15), transparent 60%),
-        linear-gradient(135deg, #000000 0%, #140014 50%, #000000 100%);
       overflow: hidden;
+      background: radial-gradient(circle at center, #080008 0%, #000000 70%);
     }
 
-    .hero::before {
-      content: "";
+    /* Laser background */
+    .laser-bg {
       position: absolute;
-      inset: -200px;
-      background: radial-gradient(circle, rgba(255,105,180,0.15) 0%, transparent 40%);
-      animation: pulseGlow 10s ease-in-out infinite alternate;
-      pointer-events: none;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .laser {
+      position: absolute;
+      width: 200%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--pink), var(--neon-pink), transparent);
+      opacity: 0.7;
+      animation: laserMove 4s linear infinite;
+      filter: blur(1px);
+    }
+
+    .laser:nth-child(1) { top: 15%; animation-duration: 6s; }
+    .laser:nth-child(2) { top: 28%; animation-duration: 5s; animation-delay: -1s; }
+    .laser:nth-child(3) { top: 41%; animation-duration: 4.5s; animation-delay: -2s; }
+    .laser:nth-child(4) { top: 55%; animation-duration: 6.5s; animation-delay: -3s; }
+    .laser:nth-child(5) { top: 68%; animation-duration: 5.2s; animation-delay: -1.5s; }
+    .laser:nth-child(6) { top: 80%; animation-duration: 7s; animation-delay: -2.5s; }
+
+    @keyframes laserMove {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(100%); }
+    }
+
+    /* Glow orbs */
+    .orb {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,79,216,0.35), transparent 70%);
+      border-radius: 50%;
+      animation: orbFloat 12s ease-in-out infinite alternate;
+      filter: blur(30px);
+    }
+
+    .orb:nth-child(7) { top: 10%; left: 15%; animation-duration: 14s; }
+    .orb:nth-child(8) { bottom: 15%; right: 10%; animation-duration: 16s; }
+    .orb:nth-child(9) { top: 40%; right: 25%; animation-duration: 18s; }
+
+    @keyframes orbFloat {
+      from { transform: translateY(0) translateX(0); }
+      to { transform: translateY(-60px) translateX(40px); }
     }
 
     .hero-content {
-      max-width: 900px;
       position: relative;
       z-index: 2;
+      max-width: 900px;
     }
 
     .hero h1 {
-      font-size: clamp(3.5rem, 8vw, 8rem);
+      font-size: clamp(3.8rem, 8vw, 8.5rem);
       font-weight: 900;
       line-height: 1;
-      margin-bottom: 1.2rem;
-      background: linear-gradient(90deg, var(--white), var(--pink), var(--white));
+      margin-bottom: 1.5rem;
+      background: linear-gradient(90deg, var(--white), var(--pink), var(--neon-pink), var(--white));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 40px rgba(255,105,180,0.4);
+      text-shadow:
+        0 0 20px rgba(255,79,216,0.6),
+        0 0 40px rgba(255,140,255,0.4);
     }
 
     .hero p {
-      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      font-size: clamp(1.2rem, 2.5vw, 1.7rem);
       opacity: 0.9;
-      margin-bottom: 2.5rem;
     }
 
-    .hero .cta {
-      display: inline-block;
-      background: var(--pink);
-      color: var(--black);
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      padding: 1.2rem 3.5rem;
-      border-radius: 999px;
-      box-shadow: 0 15px 40px rgba(255,105,180,0.55);
-      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .hero .cta:hover {
-      transform: scale(1.12);
-      background: var(--white);
-      color: var(--pink);
-      box-shadow: 0 25px 60px rgba(255,105,180,0.8);
-    }
-
-    /* ================= MINI MIDDLE SECTION ================= */
+    /* ================= MIDDLE ================= */
 
     .mystery {
-      padding: 5rem 5% 4rem;
-      background: var(--black);
+      padding: 6rem 5% 5rem;
+      background: #000;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mystery::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(255,79,216,0.12), transparent 70%);
+      pointer-events: none;
     }
 
     .mystery h2 {
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      margin-bottom: 1.2rem;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      margin-bottom: 1.5rem;
       color: var(--pink);
+      letter-spacing: 0.5px;
     }
 
     .mystery p {
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       opacity: 0.85;
     }
 
     .mystery span {
       display: inline-block;
-      margin: 0 0.5rem;
+      margin: 0 0.6rem;
       opacity: 0.7;
     }
 
@@ -156,11 +185,11 @@
       text-align: left;
       color: var(--white);
       background: rgba(0,0,0,0.55);
-      border: 1px solid rgba(255,105,180,0.25);
+      border: 1px solid rgba(255,79,216,0.35);
       border-radius: 28px;
       padding: 3rem;
       backdrop-filter: blur(16px);
-      box-shadow: 0 40px 120px rgba(255,105,180,0.35);
+      box-shadow: 0 40px 120px rgba(255,79,216,0.45);
     }
 
     .funnel-form label {
@@ -176,7 +205,7 @@
       padding: 1rem;
       margin-bottom: 1.5rem;
       border-radius: 10px;
-      border: 1px solid rgba(255,105,180,0.5);
+      border: 1px solid rgba(255,79,216,0.6);
       background: var(--gray);
       color: var(--white);
       font-size: 1rem;
@@ -185,11 +214,11 @@
     .funnel-form input:focus {
       outline: none;
       border-color: var(--pink);
-      box-shadow: 0 0 0 2px rgba(255,105,180,0.2);
+      box-shadow: 0 0 0 2px rgba(255,79,216,0.25);
     }
 
     .funnel-form button {
-      background: var(--pink);
+      background: linear-gradient(90deg, var(--pink), var(--neon-pink));
       color: var(--black);
       font-size: 1.4rem;
       padding: 1.3rem 4rem;
@@ -197,7 +226,7 @@
       font-weight: 800;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      box-shadow: 0 15px 40px rgba(255,105,180,0.5);
+      box-shadow: 0 15px 40px rgba(255,79,216,0.6);
       transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       border: none;
       cursor: pointer;
@@ -206,19 +235,19 @@
 
     .funnel-form button:hover {
       transform: scale(1.1);
-      box-shadow: 0 25px 60px rgba(255,105,180,0.8);
-      background: var(--white);
-      color: var(--pink);
+      box-shadow: 0 25px 60px rgba(255,79,216,0.9);
+      background: linear-gradient(90deg, var(--neon-pink), var(--pink));
+      color: var(--white);
     }
 
     #analysis-result {
       margin-top: 3rem;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.65);
       padding: 2.5rem;
       border-radius: 24px;
-      border: 1px solid rgba(255,105,180,0.25);
+      border: 1px solid rgba(255,79,216,0.35);
       display: none;
-      box-shadow: 0 30px 80px rgba(255,105,180,0.35);
+      box-shadow: 0 30px 80px rgba(255,79,216,0.45);
     }
 
     #analysis-result h3 {
@@ -246,8 +275,8 @@
       background: rgba(0,0,0,0.5);
       border-radius: 24px;
       padding: 2rem;
-      border: 1px solid rgba(255,105,180,0.25);
-      box-shadow: 0 30px 80px rgba(255,105,180,0.35);
+      border: 1px solid rgba(255,79,216,0.35);
+      box-shadow: 0 30px 80px rgba(255,79,216,0.45);
     }
 
     /* ================= FOOTER ================= */
@@ -261,18 +290,15 @@
       color: #aaa;
     }
 
-    /* ================= ANIMATIONS ================= */
-
-    @keyframes pulseGlow {
-      0% { opacity: 0.35; transform: scale(1); }
-      100% { opacity: 0.75; transform: scale(1.15); }
-    }
-
     /* ================= RESPONSIVE ================= */
 
     @media (max-width: 600px) {
       .funnel-form {
         padding: 2.2rem;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
       }
     }
   </style>
@@ -281,18 +307,29 @@
 
   <!-- ================= HERO ================= -->
   <section class="hero">
+    <div class="laser-bg">
+      <div class="laser"></div>
+      <div class="laser"></div>
+      <div class="laser"></div>
+      <div class="laser"></div>
+      <div class="laser"></div>
+      <div class="laser"></div>
+      <div class="orb"></div>
+      <div class="orb"></div>
+      <div class="orb"></div>
+    </div>
+
     <div class="hero-content">
       <h1>Virtual Work Wife</h1>
       <p>
-        She sees what you don’t.  
-        Fixes what’s broken.  
+        She sees what you don’t.<br>
+        Fixes what’s broken.<br>
         Makes your funnel print money.
       </p>
-      <a href="#cta" class="cta">Analyze My Funnel</a>
     </div>
   </section>
 
-  <!-- ================= MINI MIDDLE ================= -->
+  <!-- ================= MIDDLE ================= -->
   <section class="mystery">
     <h2>Quietly Powerful.</h2>
     <p>
@@ -407,7 +444,6 @@
       result.style.display = 'block';
       result.scrollIntoView({ behavior: 'smooth' });
 
-      // Render or update chart
       const data = [visitors, leads, opportunities, sales];
 
       if (funnelChart) {
@@ -421,14 +457,14 @@
           datasets: [{
             data: data,
             backgroundColor: [
-              'rgba(255,105,180,0.6)',
-              'rgba(255,105,180,0.55)',
-              'rgba(255,105,180,0.5)',
-              'rgba(255,105,180,0.45)'
+              'rgba(255,79,216,0.7)',
+              'rgba(255,79,216,0.6)',
+              'rgba(255,79,216,0.5)',
+              'rgba(255,79,216,0.45)'
             ],
-            borderColor: 'rgba(255,105,180,1)',
+            borderColor: 'rgba(255,79,216,1)',
             borderWidth: 2,
-            borderRadius: 12
+            borderRadius: 14
           }]
         },
         options: {
