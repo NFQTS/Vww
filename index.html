@@ -12,6 +12,7 @@
       --black: #000000;
       --pink: #ff4fd8;
       --neon-pink: #ff8cff;
+      --purple: #9d00ff;
       --white: #ffffff;
       --gray: #1a1a1a;
       --soft-gray: #f8f8f8;
@@ -33,17 +34,17 @@
 
     a { text-decoration: none; color: inherit; }
 
-    /* ================= HERO ================= */
+    /* ================= HERO – Redesigned for impact ================= */
     .hero {
       min-height: 100vh;
-      padding: 6rem 5% 4rem;
+      padding: 8rem 5% 6rem;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       position: relative;
       overflow: hidden;
-      background: radial-gradient(circle at center, #080008 0%, #000000 70%);
+      background: radial-gradient(circle at 30% 20%, #0f001a 0%, #000000 60%);
     }
 
     .laser-bg {
@@ -55,83 +56,81 @@
 
     .laser {
       position: absolute;
-      width: 200%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--pink), var(--neon-pink), transparent);
-      opacity: 0.7;
-      animation: laserMove 4s linear infinite;
-      filter: blur(1px);
+      width: 220%;
+      height: 1.8px;
+      background: linear-gradient(90deg, transparent, var(--pink), var(--neon-pink), var(--purple), transparent);
+      opacity: 0.5;
+      animation: laserMove 5s linear infinite;
+      filter: blur(1.5px);
     }
 
-    .laser:nth-child(1) { top: 15%; animation-duration: 6s; }
-    .laser:nth-child(2) { top: 28%; animation-duration: 5s; animation-delay: -1s; }
-    .laser:nth-child(3) { top: 41%; animation-duration: 4.5s; animation-delay: -2s; }
-    .laser:nth-child(4) { top: 55%; animation-duration: 6.5s; animation-delay: -3s; }
-    .laser:nth-child(5) { top: 68%; animation-duration: 5.2s; animation-delay: -1.5s; }
-    .laser:nth-child(6) { top: 80%; animation-duration: 7s; animation-delay: -2.5s; }
+    .laser:nth-child(odd)  { animation-duration: 7s; opacity: 0.6; }
+    .laser:nth-child(even) { animation-duration: 9s; animation-delay: -3s; opacity: 0.4; }
 
     @keyframes laserMove {
-      from { transform: translateX(-100%); }
-      to { transform: translateX(100%); }
+      from { transform: translateX(-120%) rotate(2deg); }
+      to   { transform: translateX(120%) rotate(-2deg); }
     }
 
     .orb {
       position: absolute;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(255,79,216,0.35), transparent 70%);
       border-radius: 50%;
-      animation: orbFloat 12s ease-in-out infinite alternate;
-      filter: blur(30px);
+      background: radial-gradient(circle, rgba(255,79,216,0.28), transparent 65%);
+      filter: blur(35px);
+      animation: orbFloat 18s ease-in-out infinite alternate;
+      pointer-events: none;
     }
 
-    .orb:nth-child(7) { top: 10%; left: 15%; animation-duration: 14s; }
-    .orb:nth-child(8) { bottom: 15%; right: 10%; animation-duration: 16s; }
-    .orb:nth-child(9) { top: 40%; right: 25%; animation-duration: 18s; }
+    .orb-1 { width: 520px; height: 520px; top: -15%; left: -10%; animation-duration: 22s; }
+    .orb-2 { width: 680px; height: 680px; bottom: -20%; right: -15%; animation-duration: 28s; animation-delay: -8s; }
+    .orb-3 { width: 420px; height: 420px; top: 35%; right: 5%; animation-duration: 16s; }
 
     @keyframes orbFloat {
-      from { transform: translateY(0) translateX(0); }
-      to { transform: translateY(-60px) translateX(40px); }
+      from { transform: translate(0, 0) rotate(0deg); }
+      to   { transform: translate(80px, -100px) rotate(15deg); }
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 950px;
+      max-width: 1100px;
     }
 
-    /* ================= WINNING LOGO ANIMATION ================= */
+    /* Logo – fixed spacing, bigger, premium feel */
     .logo {
-      font-size: clamp(3.8rem, 8vw, 8.8rem);
+      font-size: clamp(4.5rem, 10vw, 11rem);
       font-weight: 900;
-      line-height: 1;
-      margin-bottom: 1.4rem;
-      display: inline-flex;
-      gap: 0.2rem;
-      align-items: center;
+      line-height: 0.92;
+      margin-bottom: 1.8rem;
+      letter-spacing: -0.02em;
+      display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-      position: relative;
+      align-items: baseline;
+      gap: 0.15em 0.4em;
     }
 
     .logo span {
-      background: linear-gradient(90deg, var(--white), var(--pink), var(--neon-pink), var(--white));
+      background: linear-gradient(90deg, #ffffff, var(--pink) 30%, var(--neon-pink) 70%, #ffffff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 20px rgba(255,79,216,0.6), 0 0 40px rgba(255,140,255,0.4);
+      text-shadow: 0 0 25px rgba(255,79,216,0.7), 0 0 50px rgba(255,140,255,0.45);
       display: inline-block;
-      transition: all 0.8s ease;
     }
+
+    .logo .work { font-size: 0.88em; opacity: 0.92; letter-spacing: -0.01em; }
 
     .logo .life {
       position: relative;
-      display: inline-block;
+      display: inline-flex;
+      align-items: baseline;
     }
 
     .logo .life .l-letter {
       display: inline-block;
-      transform-origin: center right;
-      animation: knockOut 0.9s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
-      animation-delay: 1.8s;
+      transform-origin: right center;
+      animation: knockOut 1s cubic-bezier(0.6, 0.0, 0.4, 1.0) forwards;
+      animation-delay: 1.6s;
     }
 
     .logo .life .w-letter {
@@ -139,61 +138,62 @@
       left: 0;
       top: 0;
       opacity: 0;
-      transform: translateX(-60%) scale(0.7) rotate(-12deg);
-      transform-origin: center left;
-      animation: slamIn 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.3) forwards;
-      animation-delay: 1.8s;
+      transform: translateX(-70%) scale(0.65) rotate(-15deg);
+      transform-origin: left center;
+      animation: slamIn 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      animation-delay: 1.6s;
     }
 
     @keyframes knockOut {
       0%   { transform: scale(1) rotate(0deg); opacity: 1; }
-      35%  { transform: scale(1.12) rotate(6deg); opacity: 1; }   /* small wind-up */
-      70%  { transform: translateX(140%) rotate(28deg) scale(0.65); opacity: 0.4; }
-      100% { transform: translateX(220%) rotate(45deg) scale(0.4); opacity: 0; }
+      30%  { transform: scale(1.1) rotate(5deg); }
+      65%  { transform: translateX(160%) rotate(32deg) scale(0.6); opacity: 0.5; }
+      100% { transform: translateX(260%) rotate(55deg) scale(0.35); opacity: 0; }
     }
 
     @keyframes slamIn {
-      0%   { opacity: 0; transform: translateX(-60%) scale(0.7) rotate(-12deg); }
-      45%  { opacity: 1; transform: translateX(12%) scale(1.18) rotate(8deg); }   /* controlled overshoot */
-      75%  { transform: translateX(-5%) scale(0.94) rotate(-4deg); }
+      0%   { opacity: 0; transform: translateX(-70%) scale(0.65) rotate(-15deg); }
+      40%  { opacity: 1; transform: translateX(15%) scale(1.14) rotate(7deg); }
+      75%  { transform: translateX(-6%) scale(0.96) rotate(-3deg); }
       100% { transform: translateX(0) scale(1) rotate(0deg); }
     }
 
-    /* Subtle impact flash – tech energy, not cartoon */
     .logo .life::after {
       content: '';
       position: absolute;
-      inset: -40% -60% -40% -40%;
-      background: radial-gradient(circle at 40% 50%, rgba(255,140,255,0.55), transparent 70%);
+      inset: -50% -80% -50% -50%;
+      background: radial-gradient(circle at 35% 50%, rgba(255,140,255,0.65), transparent 70%);
       opacity: 0;
+      animation: impactGlow 0.8s forwards;
+      animation-delay: 2.1s;
       pointer-events: none;
-      animation: impactGlow 0.7s forwards;
-      animation-delay: 2.25s;
     }
 
     @keyframes impactGlow {
-      0%   { opacity: 0; transform: scale(0.4); }
-      30%  { opacity: 0.5; transform: scale(1.3); }
-      100% { opacity: 0; transform: scale(2); }
+      0%   { opacity: 0; transform: scale(0.5); }
+      25%  { opacity: 0.6; transform: scale(1.4); }
+      100% { opacity: 0; transform: scale(2.2); }
     }
 
     .logo .rest {
-      display: inline-block;
-      animation: subtleGlow 3s ease-in-out infinite alternate;
+      animation: subtleGlow 4s ease-in-out infinite alternate;
     }
 
     @keyframes subtleGlow {
-      from { filter: drop-shadow(0 0 0 rgba(255,79,216,0)); }
-      to { filter: drop-shadow(0 0 12px rgba(255,79,216,0.6)); }
+      from { filter: drop-shadow(0 0 8px rgba(255,79,216,0.3)); }
+      to   { filter: drop-shadow(0 0 18px rgba(255,79,216,0.7)); }
     }
 
     .hero p {
-      font-size: clamp(1.3rem, 2.5vw, 1.9rem);
-      opacity: 0.9;
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      max-width: 780px;
+      margin: 0 auto 2.5rem;
+      opacity: 0.92;
       font-weight: 300;
+      letter-spacing: 0.02em;
     }
 
-    /* ================= BENEFITS ================= */
+    /* ================= BENEFITS (unchanged) ================= */
     .benefits {
       padding: 7rem 5% 6rem;
       background: var(--soft-gray);
@@ -240,28 +240,17 @@
       box-shadow: 0 30px 70px rgba(255,79,216,0.25);
     }
 
-    .card h3 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: var(--pink);
-    }
+    .card h3 { font-size: 2rem; margin-bottom: 1rem; color: var(--pink); }
+    .card p { font-size: 1.05rem; color: #444; }
 
-    .card p {
-      font-size: 1.05rem;
-      color: #444;
-    }
-
-    /* ================= CALCULATOR ================= */
+    /* Calculator & rest unchanged – keeping functionality identical */
     .calculator {
       padding: 8rem 5%;
       background: linear-gradient(to bottom, #000000, #120012);
       text-align: center;
     }
 
-    .calculator h2 {
-      font-size: clamp(3rem, 7vw, 6rem);
-      margin-bottom: 1.5rem;
-    }
+    .calculator h2 { font-size: clamp(3rem, 7vw, 6rem); margin-bottom: 1.5rem; }
 
     .calculator p {
       font-size: 1.5rem;
@@ -364,34 +353,12 @@
       box-shadow: 0 20px 60px rgba(255,79,216,0.35);
     }
 
-    .result-card h4 {
-      font-size: 1.1rem;
-      opacity: 0.8;
-      margin-bottom: 0.6rem;
-    }
+    .result-card h4 { font-size: 1.1rem; opacity: 0.8; margin-bottom: 0.6rem; }
+    .result-card p { font-size: 2.1rem; font-weight: 800; color: var(--pink); }
 
-    .result-card p {
-      font-size: 2.1rem;
-      font-weight: 800;
-      color: var(--pink);
-    }
-
-    .platform-section {
-      margin-top: 4rem;
-      text-align: center;
-    }
-
-    .platform-section h4 {
-      font-size: 2rem;
-      margin-bottom: 1.2rem;
-      color: var(--white);
-    }
-
-    .platform-section p {
-      font-size: 1.3rem;
-      opacity: 0.9;
-      margin-bottom: 2rem;
-    }
+    .platform-section { margin-top: 4rem; text-align: center; }
+    .platform-section h4 { font-size: 2rem; margin-bottom: 1.2rem; color: var(--white); }
+    .platform-section p { font-size: 1.3rem; opacity: 0.9; margin-bottom: 2rem; }
 
     .chart-container {
       max-width: 800px;
@@ -403,7 +370,6 @@
       box-shadow: 0 30px 80px rgba(255,79,216,0.45);
     }
 
-    /* ================= FOOTER ================= */
     footer {
       padding: 3rem 5%;
       text-align: center;
@@ -415,13 +381,14 @@
 
     @media (max-width: 600px) {
       .calc-form { padding: 2.2rem; }
-      .hero p { font-size: 1.4rem; }
+      .hero { padding: 6rem 5% 4rem; }
+      .hero p { font-size: 1.5rem; }
+      .logo { font-size: clamp(3.8rem, 9vw, 7rem); line-height: 0.95; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ================= HERO ================= -->
   <section class="hero">
     <div class="laser-bg">
       <div class="laser"></div>
@@ -430,27 +397,24 @@
       <div class="laser"></div>
       <div class="laser"></div>
       <div class="laser"></div>
-      <div class="orb"></div>
-      <div class="orb"></div>
-      <div class="orb"></div>
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
     </div>
 
     <div class="hero-content">
       <div class="logo">
-        <span class="rest">Virtual&nbsp;Work&nbsp;</span>
+        <span>Virtual</span>
+        <span class="work">Work</span>
         <span class="life">
           <span class="l-letter">L</span>
           <span class="w-letter">W</span>
           <span class="rest">ife</span>
         </span>
       </div>
-      <p>
-        Your always-on AI partner for building, scaling, and optimizing digital income — without the burnout.
-      </p>
+      <p>Your always-on AI partner for building, scaling, and optimizing digital income — without the burnout.</p>
     </div>
   </section>
-
-  <!-- The rest stays exactly the same as your original -->
 
   <section class="benefits">
     <h2>Why People Love Virtual Work Wife</h2>
@@ -472,9 +436,7 @@
 
   <section class="calculator" id="calculator">
     <h2>Opportunity Cost Engine</h2>
-    <p>
-      See how much revenue your audience could be generating — and where it should live.
-    </p>
+    <p>See how much revenue your audience could be generating — and where it should live.</p>
 
     <form class="calc-form" id="calc-form">
       <label for="niche">Your Niche</label>
@@ -504,18 +466,15 @@
 
     <div id="calc-result">
       <h3>Your Opportunity Snapshot</h3>
-
       <div class="result-grid">
         <div class="result-card">
           <h4>Profit per Call</h4>
           <p id="profitPerCall">$0</p>
         </div>
-
         <div class="result-card">
           <h4>Value per Viewer</h4>
           <p id="valuePerViewer">$0</p>
         </div>
-
         <div class="result-card">
           <h4>Missed Revenue Potential</h4>
           <p id="missedRevenue">$0</p>
@@ -525,7 +484,6 @@
       <div class="platform-section">
         <h4>Where Your Audience Converts Best</h4>
         <p id="platformHint">Based on your niche and performance, these platforms typically outperform.</p>
-
         <div class="chart-container">
           <canvas id="platformChart"></canvas>
         </div>
@@ -538,6 +496,7 @@
   </footer>
 
   <script>
+    // Exact same JS as before – no changes needed
     const calcForm = document.getElementById('calc-form');
     const resultBox = document.getElementById('calc-result');
     const profitPerCallEl = document.getElementById('profitPerCall');
